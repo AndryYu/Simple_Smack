@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.andryyu.smack"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.andryyu.smack.greendao'
+        targetGenDir 'src/main/java'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    //smack-core为核心库
+    compile 'org.igniterealtime.smack:smack-core:4.1.9'
+    //Smack IM.Classes and methods for XMPP-IM (RFC 6121): Roster, Chat and other functionality
+    compile "org.igniterealtime.smack:smack-im:4.1.9"
+    //Smack for Android. All the required dependencies to run Smack on Android.
+    //smack-android依赖smack-extensions和smack-experimental和smack-tcp
+    compile "org.igniterealtime.smack:smack-android:4.1.9"
+    compile "org.igniterealtime.smack:smack-android-extensions:4.1.9"
+    //XMPP connections
+    compile "org.igniterealtime.smack:smack-tcp:4.1.9"
+    //support for the various XMPP XEPs (Multi-User Chat, PubSub, …) and other XMPP extensions.
+    compile "org.igniterealtime.smack:smack-extensions:4.1.9"
+    compile "org.igniterealtime.smack:smack-experimental:4.1.9"
+
+    //Logger
+    compile 'com.orhanobut:logger:1.15'
+    compile 'org.greenrobot:greendao:3.2.2'
+}
