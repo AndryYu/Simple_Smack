@@ -1,6 +1,7 @@
 package com.andryyu.smack.manager.api;
 
-import com.rnxmppclient.bean.LoginResult;
+
+import com.andryyu.smack.bean.LoginResult;
 
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 

@@ -1,11 +1,12 @@
 package com.andryyu.smack.manager;
 
+import com.andryyu.smack.bean.LoginResult;
+import com.andryyu.smack.bean.User;
+import com.andryyu.smack.data.Constants;
+import com.andryyu.smack.manager.api.XmppInterface;
+import com.andryyu.smack.manager.listener.SmackConnectionListener;
 import com.orhanobut.logger.Logger;
-import com.rnxmppclient.bean.LoginResult;
-import com.rnxmppclient.bean.User;
-import com.rnxmppclient.data.Constants;
-import com.rnxmppclient.manager.api.XmppInterface;
-import com.rnxmppclient.manager.listener.SmackConnectionListener;
+
 
 import org.jivesoftware.smack.ReconnectionManager;
 import org.jivesoftware.smack.SmackConfiguration;
@@ -23,7 +24,7 @@ import java.io.IOException;
  * Created by WH1705002 on 2017/6/6.
  */
 
-public class XmppManager implements XmppInterface{
+public class XmppManager implements XmppInterface {
 
     private String TAG = XmppManager.class.getSimpleName();
 

@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -21,4 +22,20 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext  {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.3"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+
+    supportLibraryVersion = "25.2.0"
+    butterknifeVersion = "8.4.0"
+    daggerVersion = '2.7'
+    glideVersion = '3.7.0'
+    gsonVersion = '2.7'
+    rxRelayVersion = "2.0.0"
+    rxVersion = '2.0.1'
+    greenDaoVersion = "3.2.2"
 }

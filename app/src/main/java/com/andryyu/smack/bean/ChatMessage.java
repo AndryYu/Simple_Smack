@@ -3,7 +3,8 @@ package com.andryyu.smack.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.rnxmppclient.data.FileLoadState;
+
+import com.andryyu.smack.data.FileLoadState;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

@@ -1,7 +1,9 @@
 package com.andryyu.smack.manager;
 
-import com.rnxmppclient.data.Constants;
-import com.rnxmppclient.manager.api.ChatInterface;
+
+
+import com.andryyu.smack.data.Constants;
+import com.andryyu.smack.manager.api.ChatInterface;
 
 import org.jivesoftware.smack.chat.Chat;
 import org.jivesoftware.smack.chat.ChatManager;
@@ -27,7 +29,7 @@ import java.util.Map;
  * Created by WH1705002 on 2017/6/6.
  */
 
-public class UserChatManager implements ChatInterface{
+public class UserChatManager implements ChatInterface {
 
     private static XMPPTCPConnection connection;
     private static ChatManager chatManager;

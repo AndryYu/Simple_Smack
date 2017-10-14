@@ -1,7 +1,7 @@
 package com.andryyu.smack.manager;
 
+import com.andryyu.smack.manager.api.UserInfoInterface;
 import com.orhanobut.logger.Logger;
-import com.rnxmppclient.manager.api.UserInfoInterface;
 
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;

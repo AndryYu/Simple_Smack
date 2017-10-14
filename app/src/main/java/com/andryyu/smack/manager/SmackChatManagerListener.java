@@ -1,10 +1,11 @@
 package com.andryyu.smack.manager;
 
+import com.andryyu.smack.BaseApplication;
+import com.andryyu.smack.bean.ChatMessage;
+import com.andryyu.smack.bean.MessageType;
+import com.andryyu.smack.data.Constants;
 import com.orhanobut.logger.Logger;
-import com.rnxmppclient.MainApplication;
-import com.rnxmppclient.bean.ChatMessage;
-import com.rnxmppclient.bean.MessageType;
-import com.rnxmppclient.data.Constants;
+
 
 import org.jivesoftware.smack.chat.Chat;
 import org.jivesoftware.smack.chat.ChatManagerListener;
@@ -57,7 +58,7 @@ public class SmackChatManagerListener implements ChatManagerListener {
                         chatMessage.setMessage(json.optString(Constants.KEY_MESSAGE_CONTENT));
                         chatMessage.setIsMulti(false);
 
-                        MainApplication.getDaoSession().getChatMessageDao().save(chatMessage);
+                       // BaseApplication.getDaoSession().getChatMessageDao().save(chatMessage);
                        // EventBus.getDefault().post(chatMessage);
                     } catch (Exception e) {
                         Logger.e(e, "发送的消息格式不正确");
