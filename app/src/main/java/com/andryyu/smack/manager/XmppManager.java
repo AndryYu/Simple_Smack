@@ -1,21 +1,16 @@
 package com.andryyu.smack.manager;
 
-import com.andryyu.smack.bean.LoginResult;
-import com.andryyu.smack.bean.User;
+
 import com.andryyu.smack.data.Constants;
 import com.andryyu.smack.manager.api.XmppInterface;
 import com.andryyu.smack.manager.listener.SmackConnectionListener;
-import com.orhanobut.logger.Logger;
-
 
 import org.jivesoftware.smack.ReconnectionManager;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
-import org.jivesoftware.smackx.iqregister.AccountManager;
 
 import java.io.IOException;
 
@@ -23,16 +18,11 @@ import java.io.IOException;
 /**
  * Created by WH1705002 on 2017/6/6.
  */
-
-public class XmppManager implements XmppInterface {
-
+public class XmppManager implements XmppInterface.connInterface {
     private String TAG = XmppManager.class.getSimpleName();
-
-
     /** xmppConnection实例 */
     private static XMPPTCPConnection mConnection;
-    private static volatile XmppManager xmppManager;
-
+    private static  XmppManager xmppManager;
 
     private XmppManager() {
         this.mConnection = connect();
@@ -54,7 +44,6 @@ public class XmppManager implements XmppInterface {
         }
         return xmppManager;
     }
-
 
     @Override
     public XMPPTCPConnection connect() {
@@ -112,69 +101,6 @@ public class XmppManager implements XmppInterface {
         return true;
     }
 
-    @Override
-    public LoginResult login(String username, String password) {
-        try {
-            if (!isConnected()) {
-                throw new IllegalStateException("服务器断开，请先连接服务器");
-            }
-            mConnection.login(username, password);
-            User user = new User(username, password);
-            user.setNickname(getAccountName());
-            return new LoginResult(user, true);
-        } catch (Exception e) {
-            Logger.e(TAG, e, "login failure");
-            return new LoginResult(false, e.getMessage());
-        }
-    }
-
-
-    public String getAccountName() {
-        if (isConnected()) {
-            try {
-                return AccountManager.getInstance(mConnection).getAccountAttribute("name");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-        throw new NullPointerException("服务器连接失败，请先连接服务器");
-    }
-
-    @Override
-    public boolean updateUserState(int status) {
-        if(mConnection==null){
-            return false;
-        }
-        Presence presence = new Presence(Presence.Type.available);
-        switch (status){
-            case 0: //设置在线
-                presence.setMode(Presence.Mode.available);
-                break;
-            case 1: //设置Q我吧
-                presence.setMode(Presence.Mode.chat);
-                break;
-            case 2: //设置忙碌
-                presence.setMode(Presence.Mode.dnd);
-                break;
-            case 3: //离开
-                presence.setMode(Presence.Mode.away);
-                break;
-            case 4: //小憩一会
-                presence.setMode(Presence.Mode.xa);
-                break;
-            case 5: //设置离线
-                presence = new Presence(Presence.Type.unavailable);
-                break;
-        }
-        try {
-            // Send the stanza (assume we have an XMPPConnection instance called "xmppConnection").
-            mConnection.sendStanza(presence);
-            return true;
-        } catch (SmackException.NotConnectedException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
     @Override
     public void disConnect() {
@@ -182,5 +108,19 @@ public class XmppManager implements XmppInterface {
             mConnection.disconnect();
             mConnection=null;
         }
+    }
+
+    public static UserChatManager getChatManager(){
+        if(xmppManager == null)
+            xmppManager = getInstance();
+        UserChatManager userChatManager = new UserChatManager(xmppManager);
+        return userChatManager;
+    }
+
+    public static UserInfoManager getInfoManager(){
+        if(xmppManager == null)
+            xmppManager = getInstance();
+        UserInfoManager userInfoManager = new UserInfoManager(xmppManager);
+        return userInfoManager;
     }
 }

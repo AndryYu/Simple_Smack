@@ -1,4 +1,4 @@
-package com.andryyu.smack.bean;
+package com.andryyu.smack.entity;
 
 /**
  * 消息类型

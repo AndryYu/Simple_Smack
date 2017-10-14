@@ -1,8 +1,7 @@
-package com.andryyu.smack.manager;
+package com.andryyu.smack.manager.listener;
 
-import com.andryyu.smack.BaseApplication;
-import com.andryyu.smack.bean.ChatMessage;
-import com.andryyu.smack.bean.MessageType;
+import com.andryyu.smack.entity.ChatMessage;
+import com.andryyu.smack.entity.MessageType;
 import com.andryyu.smack.data.Constants;
 import com.orhanobut.logger.Logger;
 

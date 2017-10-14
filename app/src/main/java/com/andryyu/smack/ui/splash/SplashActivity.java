@@ -1,4 +1,4 @@
-package com.andryyu.smack.ui;
+package com.andryyu.smack.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.andryyu.smack.R;
-import com.andryyu.smack.ui.splash.TranslateFragment;
-import com.andryyu.smack.ui.splash.WelcompagerTransformer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

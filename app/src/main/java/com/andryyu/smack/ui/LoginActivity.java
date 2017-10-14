@@ -94,7 +94,6 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
 
-
     private boolean mayRequestContacts() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -138,13 +137,12 @@ public class LoginActivity extends AppCompatActivity  {
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password)) {
+        if (!TextUtils.isEmpty(password)&&password.length() < 4) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -161,6 +159,8 @@ public class LoginActivity extends AppCompatActivity  {
             focusView.requestFocus();
         } else {
             showProgress(true);
+            Intent  intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 

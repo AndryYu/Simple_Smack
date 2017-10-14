@@ -1,4 +1,4 @@
-package com.andryyu.smack.bean;
+package com.andryyu.smack.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

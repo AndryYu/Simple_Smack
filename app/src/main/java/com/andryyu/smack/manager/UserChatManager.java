@@ -3,7 +3,7 @@ package com.andryyu.smack.manager;
 
 
 import com.andryyu.smack.data.Constants;
-import com.andryyu.smack.manager.api.ChatInterface;
+import com.andryyu.smack.manager.api.XmppInterface;
 
 import org.jivesoftware.smack.chat.Chat;
 import org.jivesoftware.smack.chat.ChatManager;
@@ -29,34 +29,26 @@ import java.util.Map;
  * Created by WH1705002 on 2017/6/6.
  */
 
-public class UserChatManager implements ChatInterface {
+public class UserChatManager implements XmppInterface.ChatInterface {
 
     private static XMPPTCPConnection connection;
     private static ChatManager chatManager;
     private static MultiUserChatManager mucManager;
     private static XmppManager xmppManager;
     private Map<String, Chat> chatMap = new HashMap<String, Chat>();// 聊天窗口管理map集合
+    private static  UserChatManager userChatManager;
 
-    /** 线程安全单例模式 */
-    private static class SingletonHolder {
-        private static final UserChatManager INSTANCE = new UserChatManager();
-    }
 
-    /**
-     * <p>getChatManager</p>
-     * @return
-     * @Description 获取聊天对象管理器
-     */
-    public static  UserChatManager getChatManager() {
+    public UserChatManager(XmppManager xmppManager){
+        this.xmppManager = xmppManager;
+        connection = xmppManager.getConnection();
         xmppManager = XmppManager.getInstance();
         connection = xmppManager.getConnection();
 
         if(xmppManager.isConnected()) {
             chatManager = ChatManager.getInstanceFor(connection);
-            MultiUserChatManager mucManager = MultiUserChatManager.getInstanceFor(connection);
-            return SingletonHolder.INSTANCE;
+            mucManager = MultiUserChatManager.getInstanceFor(connection);
         }
-
         throw new NullPointerException("服务器连接失败，请先连接服务器");
     }
 

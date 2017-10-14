@@ -1,4 +1,4 @@
-package com.andryyu.smack.bean;
+package com.andryyu.smack.entity;
 
 import java.io.Serializable;
 

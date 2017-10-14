@@ -1,4 +1,4 @@
-package com.andryyu.smack.bean;
+package com.andryyu.smack.entity;
 
 /**
  * Created by WH1705002 on 2017/6/7.
